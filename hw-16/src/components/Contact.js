@@ -1,16 +1,12 @@
 import React from 'react';
-import './style-hw-16.css';
+import './style.css';
 
-function Contact(props) {
-    
-    // const male = '\u2642';
-    // const female = '\u2640';
-    // const noGender = '\u00D7';
+function Contact({gender, firstName, lastName, phone}) {
 
     let contactGender;
-    if(props.gender === "male"){
+    if(gender === "male"){
         contactGender = '\u2642';
-    }else if (props.gender === "female"){
+    }else if (gender === "female"){
         contactGender = '\u2640';
     }else{
         contactGender = '\u00D7';
@@ -20,8 +16,8 @@ function Contact(props) {
         <div className="contact">
             <span className="gender">{contactGender}</span>
             <div className="contact-info">
-                <p className="name">{props.firstName} {props.lastName}</p>
-                <p>{props.phone}</p>
+                <p className="name">{firstName} {lastName}</p>
+                <p>{phone}</p>
             </div>
         </div>
     )

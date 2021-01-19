@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Contact from "./Contact";
-import './style-hw-16.css';
+import './style.css';
 
 const contacts = [{
     firstName: "Барней",
@@ -35,7 +35,6 @@ const contacts = [{
 
 class Contracts extends Component{
     
-    
     state = {
         contacts: contacts,
         search: ''
@@ -43,10 +42,10 @@ class Contracts extends Component{
 
     handleSearchChange = e => {
 
-        const neededContact = contacts.filter(contact => (`${contact.firstName} ${contact.lastName}`).toLowerCase().includes(e.target.value.toLowerCase()) ||
+        const filteredContacts = contacts.filter(contact => (`${contact.firstName} ${contact.lastName}`).toLowerCase().includes(e.target.value.toLowerCase()) ||
         (contact.phone).includes(e.target.value)); //|| (contact.gender).includes(e.target.value);
 
-        this.setState({contacts: neededContact});
+        this.setState({contacts: filteredContacts});
         this.setState({search: e.target.value});
 
     }
@@ -58,8 +57,12 @@ class Contracts extends Component{
                     <input type="text" placeholder="Type contact you need" value={this.state.search} onChange={this.handleSearchChange}></input>
                 </div>
                 <p>{this.state.contacts.map((contact, i) => <Contact {...contact}/>)}</p>
+                {!this.state.contacts.length && (
+                <p>На жаль контактів не знайдено</p>
+                )}
             </div>
         )
     }
 }
+
 export default Contracts;
